@@ -11,8 +11,8 @@
 def create_indexed_vertex(data,index_name,keys) {
   neo4j = g.getRawGraph()
   manager = neo4j.index()
-  g.setMaxBufferSize(0)
-  g.startTransaction()
+  // g.setMaxBufferSize(0)
+  // g.startTransaction()
   try {
     index = manager.forNodes(index_name)
     vertex = neo4j.createNode()
@@ -34,8 +34,8 @@ def create_indexed_vertex(data,index_name,keys) {
 def update_indexed_vertex(_id, data, index_name, keys) {
   vertex = g.getRawGraph().getNodeById(_id)
   manager = g.getRawGraph().index()
-  g.setMaxBufferSize(0)
-  g.startTransaction()
+  // g.setMaxBufferSize(0)
+  // g.startTransaction()
   try {
     index = manager.forNodes(index_name)
     index.remove(vertex)
@@ -63,8 +63,8 @@ def create_indexed_edge(outV,label,inV,data,index_name,keys,label_var) {
   manager = neo4j.index()
   vertex = neo4j.getNodeById(outV)
   relationshipType = DynamicRelationshipType.withName(label)
-  g.setMaxBufferSize(0)
-  g.startTransaction()
+  // g.setMaxBufferSize(0)
+  // g.startTransaction()
   try {
     index = manager.forRelationships(index_name)
     edge = vertex.createRelationshipTo(neo4j.getNodeById(inV),relationshipType)
@@ -88,8 +88,8 @@ def update_indexed_edge(_id, data, index_name, keys) {
   neo4j = g.getRawGraph()
   manager = neo4j.index()
   edge = neo4j.getRelationshipById(_id)
-  g.setMaxBufferSize(0)
-  g.startTransaction()
+  // g.setMaxBufferSize(0)
+  // g.startTransaction()
   try {
     index = manager.forRelationships(index_name)
     index.remove(edge)
@@ -139,8 +139,8 @@ def get_metadata(key, default_value) {
 }
 
 def set_metadata(key, value) {  
-  g.setMaxBufferSize(0)
-  g.startTransaction()
+  // g.setMaxBufferSize(0)
+  // g.startTransaction()
   try {
     neo4j = g.getRawGraph();
     properties = neo4j.getKernelData().properties();
@@ -154,8 +154,8 @@ def set_metadata(key, value) {
 }
 
 def remove_metadata(key) {
-  g.setMaxBufferSize(0)
-  g.startTransaction()
+  // g.setMaxBufferSize(0)
+  // g.startTransaction()
   try {
     neo4j = g.getRawGraph();
     properties = neo4j.getKernelData().properties();
